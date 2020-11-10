@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.graduate.loyee.mapper.user.UserMapper">
+    <!--<resultMap id="BaseResultMap" type="com.meishang.privatedomaintraffic.entity.addressCascade.ProvinceCityDistrict">-->
+        <!--<id column="id" jdbcType="INTEGER" property="id"/>-->
+    <!--</resultMap>-->
+    <!--<sql id="Base_Column_List">-->
+    <!--id, pid, `name`-->
+    <!--&lt;!&ndash;</sql>&ndash;&gt;-->
+    <!--<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
+        <!--select-->
+        <!--<include refid="Base_Column_List" />-->
+        <!--from province_city_district-->
+        <!--where id = #{id,jdbcType=INTEGER}-->
+    <!--</select>-->
+
+    <select id="findUserByPhone" parameterType="com.graduate.loyee.vo.RegisterUserVo" resultType="java.lang.Integer">
+      SELECT count(*) FROM user WHERE tel = #{tel,jdbcType=VARCHAR};
+    </select>
+
+    <select id="queryByName" parameterType="java.lang.String" resultType="com.graduate.loyee.entity.User">
+      SELECT * from user where name = #{name}
+    </select>
+
+
+    <insert id="register" parameterType="com.graduate.loyee.vo.RegisterUserVo">
+        insert into user(name,tel,sex,email) values(#{name,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>
